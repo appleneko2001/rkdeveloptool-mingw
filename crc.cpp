@@ -188,7 +188,8 @@ unsigned int crc32_le(unsigned int crc, unsigned char *p, unsigned int len)
 	}
 	return nAccum;
 */
-	unsigned int      *b =(unsigned int *)p;
+#ifdef USE_BUG_PROCEDURES
+	auto      *b =(unsigned int *)p;
 	unsigned int      *tab = crc32table_le;
 	crc = crc ^ 0xFFFFFFFF;
 	if((((long)b)&3 && len)){
@@ -221,7 +222,15 @@ unsigned int crc32_le(unsigned int crc, unsigned char *p, unsigned int len)
 	}
 	crc = crc ^ 0xFFFFFFFF;
 	return crc;
-
+#else
+    int i;
+    while (len--) {
+        crc ^= *p++;
+        for (i = 0; i < 8; i++)
+            crc = (crc >> 1) ^ ((crc & 1) ? 0xedb88320 : 0);
+    }
+    return crc;
+#endif
 }
 
 #define CRC16_CCITT         0x1021  //CRC operator

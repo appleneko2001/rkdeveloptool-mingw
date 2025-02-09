@@ -7,6 +7,13 @@
 
 #include   <unistd.h>
 #include   <dirent.h>
+
+// since I changed the way how this tool accesses filesystem in Windows-OS,
+// C-standard version should be 17 or newer to use <filesystem> to compile it successfully
+#ifdef DEVTOOL_WIN32
+#include   <filesystem>
+#endif
+
 #include "config.h"
 #include "DefineHeader.h"
 #include "gpt.h"
@@ -3293,7 +3300,7 @@ bool handle_command(int argc, char* argv[], CRKScan *pScan)
 }
 
 
-int main(int argc, char* argv[])
+int main(int argc, char *argv [])
 {
 	CRKScan *pScan = NULL;
 	int ret;
@@ -3303,7 +3310,24 @@ int main(int argc, char* argv[])
 	struct stat statBuf;
 
 	g_ConfigItemVec.clear();
-	sprintf(szProgramProcPath, "/proc/%d/exe", getpid());
+
+
+#ifdef DEVTOOL_WIN32
+    strcpy(szProgramProcPath, argv[0]);
+    using namespace std::filesystem;
+
+    auto linkDir = path(szProgramProcPath).parent_path();
+    if(linkDir.empty())
+        strcpy(szProgramDir, ".");
+    else
+    {
+        strcpy(szProgramDir, linkDir.string().c_str());
+	}
+#elif DEVTOOL_UNIX
+    // this probably works in linux but not MinGW
+    // the workaround probably use argv first element
+
+    sprintf(szProgramProcPath, "/proc/%d/exe", getpid());
 	if (readlink(szProgramProcPath, szProgramDir, 256) == -1)
 		strcpy(szProgramDir, ".");
 	else {
@@ -3312,12 +3336,18 @@ int main(int argc, char* argv[])
 		if (pSlash)
 			*pSlash = '\0';
 	}
+#endif
+
 	strLogDir = szProgramDir;
 	strLogDir +=  "/log/";
 	strConfigFile = szProgramDir;
 	strConfigFile += "/config.ini";
 	if (opendir(strLogDir.c_str()) == NULL)
-		mkdir(strLogDir.c_str(), S_IRWXU | S_IRWXG | S_IROTH);
+#ifdef DEVTOOL_WIN32
+        create_directory(path(strLogDir.c_str()));
+#elif DEVTOOL_UNIX
+        mkdir(strLogDir.c_str(), S_IRWXU | S_IRWXG | S_IROTH);
+#endif
 	g_pLogObject = new CRKLog(strLogDir.c_str(), "log",true);
 
 	if(stat(strConfigFile.c_str(), &statBuf) < 0) {

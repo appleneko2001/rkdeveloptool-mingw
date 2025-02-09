@@ -15,11 +15,11 @@ bool CRKBoot::GetSignFlag()
 {
 	return m_bSignFlag;
 }
-DWORD CRKBoot::GetVersion()
+UINT CRKBoot::GetVersion()
 {
 	return m_version;
 }
-DWORD CRKBoot::GetMergeVersion()
+UINT CRKBoot::GetMergeVersion()
 {
 	return m_mergeVersion;
 }
@@ -109,7 +109,7 @@ bool CRKBoot::GetEntryProperty(ENUM_RKBOOTENTRY type,UCHAR ucIndex,DWORD &dwSize
 	case ENTRYLOADER:
 		dwOffset = m_loaderOffset;
 		ucCount = m_loaderCount;
-		ucSize = m_loaderSize;//Loader³¤¶ÈÉú³ÉÊ±ÒÑ¾­512¶ÔÆë
+		ucSize = m_loaderSize;//Loaderï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½Ñ¾ï¿½512ï¿½ï¿½ï¿½ï¿½
 		break;
 	default:
 		return false;

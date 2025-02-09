@@ -75,7 +75,7 @@ bool CRKLog::Write(string text)
 	string  strName;
 	FILE *file=NULL;
 	time(&now);
-	localtime_r(&now, &timeNow);
+	localtime_s(&timeNow, &now);
 	sprintf(szDateTime, "%04d-%02d-%02d.txt", timeNow.tm_year + 1900, timeNow.tm_mon + 1, timeNow.tm_mday);
 	strName = m_path + m_name+szDateTime;
 

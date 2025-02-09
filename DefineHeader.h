@@ -11,7 +11,7 @@
 #include <wchar.h>
 #include <errno.h>
 #include <pthread.h>
-#include <libusb.h>
+#include <libusb-1.0/libusb.h>
 
 #include "Property.hpp"
 #include <list>
@@ -23,10 +23,10 @@
 using namespace std;
 typedef unsigned char BYTE, *PBYTE;
 typedef unsigned char UCHAR;
-typedef unsigned short WCHAR;
+//typedef unsigned short WCHAR;
 typedef unsigned short USHORT;
 typedef unsigned int	UINT;
-typedef unsigned int	DWORD;
+//typedef unsigned int	DWORD;
 #define ALIGN(x, a)		__ALIGN_MASK((x), (a) - 1)
 #define __ALIGN_MASK(x, mask)	(((x) + (mask)) & ~(mask))
 #define RK28_SEC2_RESERVED_LEN 473
