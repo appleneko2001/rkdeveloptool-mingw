@@ -48,29 +48,29 @@ u8 test_gpt_head[] = {
 
 void usage()
 {
-	printf("\r\n---------------------Tool Usage ---------------------\r\n");
-	printf("Help:\t\t\t-h or --help\r\n");
-	printf("Version:\t\t-v or --version\r\n");
-	printf("ListDevice:\t\tld\r\n");
-	printf("DownloadBoot:\t\tdb <Loader>\r\n");
-	printf("UpgradeLoader:\t\tul <Loader>\r\n");
-	printf("ReadLBA:\t\trl  <BeginSec> <SectorLen> <File>\r\n");
-	printf("WriteLBA:\t\twl  <BeginSec> <File>\r\n");
-	printf("WriteLBA:\t\twlx  <PartitionName> <File>\r\n");
-	printf("WriteGPT:\t\tgpt <gpt partition table>\r\n");
-	printf("WriteParameter:\t\tprm <parameter>\r\n");
-	printf("PrintPartition:\t\tppt \r\n");
-	printf("EraseFlash:\t\tef \r\n");
-	printf("TestDevice:\t\ttd\r\n");
-	printf("ResetDevice:\t\trd [subcode]\r\n");
-	printf("ReadFlashID:\t\trid\r\n");
-	printf("ReadFlashInfo:\t\trfi\r\n");
-	printf("ReadChipInfo:\t\trci\r\n");
-	printf("ReadCapability:\t\trcb\r\n");
-	printf("PackBootLoader:\t\tpack\r\n");
-	printf("UnpackBootLoader:\tunpack <boot loader>\r\n");
-	printf("TagSPL:\t\t\ttagspl <tag> <U-Boot SPL>\r\n");
-	printf("-------------------------------------------------------\r\n\r\n");
+	printf("\n---------------------Tool Usage ---------------------\n");
+	printf("Help:\t\t\t-h or --help\n");
+	printf("Version:\t\t-v or --version\n");
+	printf("ListDevice:\t\tld\n");
+	printf("DownloadBoot:\t\tdb <Loader>\n");
+	printf("UpgradeLoader:\t\tul <Loader>\n");
+	printf("ReadLBA:\t\trl  <BeginSec> <SectorLen> <File>\n");
+	printf("WriteLBA:\t\twl  <BeginSec> <File>\n");
+	printf("WriteLBA:\t\twlx  <PartitionName> <File>\n");
+	printf("WriteGPT:\t\tgpt <gpt partition table>\n");
+	printf("WriteParameter:\t\tprm <parameter>\n");
+	printf("PrintPartition:\t\tppt \n");
+	printf("EraseFlash:\t\tef \n");
+	printf("TestDevice:\t\ttd\n");
+	printf("ResetDevice:\t\trd [subcode]\n");
+	printf("ReadFlashID:\t\trid\n");
+	printf("ReadFlashInfo:\t\trfi\n");
+	printf("ReadChipInfo:\t\trci\n");
+	printf("ReadCapability:\t\trcb\n");
+	printf("PackBootLoader:\t\tpack\n");
+	printf("UnpackBootLoader:\tunpack <boot loader>\n");
+	printf("TagSPL:\t\t\ttagspl <tag> <U-Boot SPL>\n");
+	printf("-------------------------------------------------------\n\n");
 }
 void ProgressInfoProc(DWORD deviceLayer, ENUM_PROGRESS_PROMPT promptID, long long totalValue, long long currentValue, ENUM_CALL_STEP emCall)
 {
