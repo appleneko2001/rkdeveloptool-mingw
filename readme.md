@@ -69,11 +69,11 @@ TagSPL:                 tagspl <tag> <U-Boot SPL>
 ### 1. Download kernel.img binary to kernel partition
 ```shell
 # download usbplug to device
-./rkdeveloptool db RKXXLoader.bin
+./rkdevtool db RKXXLoader.bin
 
 # 0x8000 is base of kernel partition,unit is sector.
-./rkdeveloptool wl 0x8000 kernel.img
+./rkdevtool wl 0x8000 kernel.img
 
 # reset device
-./rkdeveloptool rd
+./rkdevtool rd
 ```
