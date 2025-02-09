@@ -34,7 +34,8 @@ cd build
 -->
 
 ## Usage
-> [!IMPORTANT] Replace your Rockchip download driver with "[Zadig](https://zadig.akeo.ie/)" to allow this tool access your Rockchip-based SBC or devices! 
+> [!IMPORTANT]
+> Replace your Rockchip download driver with "[Zadig](https://zadig.akeo.ie/)" to allow this tool access your Rockchip-based SBC or devices! 
 
 All supported commands can be queried by using command `./rkdevtool.exe -h`
 Example usage output:
